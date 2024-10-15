@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperaturumrechnung: Grad Wilhelm und Celsius</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            margin: 10px;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Temperaturumrechnung</h1>
+    <p>Gib eine Temperatur in Grad Celsius oder Grad Wilhelm ein, um sie zu konvertieren.</p>
+    
+    <label for="celsius">Grad Celsius:</label>
+    <input type="number" id="celsius" placeholder="Celsius" oninput="clearField('wilhelm')"><br>
+
+    <label for="wilhelm">Grad Wilhelm:</label>
+    <input type="number" id="wilhelm" placeholder="Wilhelm" oninput="clearField('celsius')"><br>
+
+    <button onclick="convert()">Umrechnen</button>
+
+    <script>
+        // Konstanten für den Schmelz- und Siedepunkt von Gold in Celsius
+        const goldSchmelzpunkt = 1064.2;
+        const goldSiedepunkt = 2856;
+
+        // Funktion zur Umrechnung von Celsius in Wilhelm
+        function celsiusToWilhelm(celsius) {
+            return ((celsius - goldSchmelzpunkt) / (goldSiedepunkt - goldSchmelzpunkt)) * 100;
+        }
+
+        // Funktion zur Umrechnung von Wilhelm in Celsius
+        function wilhelmToCelsius(wilhelm) {
+            return ((wilhelm / 100) * (goldSiedepunkt - goldSchmelzpunkt)) + goldSchmelzpunkt;
+        }
+
+        // Funktion zur Umrechnung
+        function convert() {
+            const celsiusInput = document.getElementById("celsius");
+            const wilhelmInput = document.getElementById("wilhelm");
+
+            if (celsiusInput.value !== "") {
+                const celsius = parseFloat(celsiusInput.value);
+                const wilhelm = celsiusToWilhelm(celsius);
+                wilhelmInput.value = wilhelm.toFixed(2);
+            } else if (wilhelmInput.value !== "") {
+                const wilhelm = parseFloat(wilhelmInput.value);
+                const celsius = wilhelmToCelsius(wilhelm);
+                celsiusInput.value = celsius.toFixed(2);
+            } else {
+                alert("Bitte gib eine Temperatur in eines der Felder ein.");
+            }
+        }
+
+        // Funktion, um das andere Feld zu leeren, wenn eines bearbeitet wird
+        function clearField(fieldId) {
+            document.getElementById(fieldId).value = "";
+        }
+    </script>
+
+</body>
+</html>
