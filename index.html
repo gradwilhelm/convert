@@ -14,17 +14,71 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+
         input {
             margin: 10px;
         }
+
         button {
             margin-top: 10px;
+            background-color: #008cff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00a2ff;
+        }
+
+        h1 {
+            float: right;
+            margin: 9px;
+            color: white;
+        }
+
+        nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0073ff;
+            margin-top: -20px;
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            float: left;
+        }
+
+        nav a:hover {
+            background-color: #008cff;
+        }
+
+        .active {
+            background-color: #00a2ff;
+        }
+
+        input:focus {
+            outline: none;
         }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="https://gradwilhelm.github.io/home/">Start</a>
+        <a href="https://gradwilhelm.github.io/convert/" class="active">Rechner</a>
+        <h1>Temperaturumrechnung</h1>
+    </nav>
 
-    <h1>Temperaturumrechnung</h1>
     <p>Gib eine Temperatur in Grad Celsius oder Grad Wilhelm ein, um sie zu konvertieren.</p>
     
     <label for="celsius">Grad Celsius:</label>
