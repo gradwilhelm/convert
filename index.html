@@ -76,7 +76,7 @@
     <nav>
         <a href="https://gradwilhelm.github.io/home/">Start</a>
         <a href="https://gradwilhelm.github.io/convert/" class="active">Rechner</a>
-        <h1>Temperaturumrechnung</h1>
+        <h1>Grad Wilhelm</h1>
     </nav>
 
     <p>Gib eine Temperatur in Grad Celsius oder Grad Wilhelm ein, um sie zu konvertieren.</p>
@@ -87,7 +87,7 @@
     <label for="wilhelm">Grad Wilhelm:</label>
     <input type="number" id="wilhelm" placeholder="Wilhelm" oninput="clearField('celsius')"><br>
 
-    <button onclick="convert()">Umrechnen</button>
+    <button onclick="convert()" id="convert">Umrechnen</button>
 
     <script>
         // Konstanten für den Schmelz- und Siedepunkt von Gold in Celsius
@@ -103,6 +103,14 @@
         function wilhelmToCelsius(wilhelm) {
             return ((wilhelm / 100) * (goldSiedepunkt - goldSchmelzpunkt)) + goldSchmelzpunkt;
         }
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("convert").click();
+            }
+        });
+
 
         // Funktion zur Umrechnung
         function convert() {
